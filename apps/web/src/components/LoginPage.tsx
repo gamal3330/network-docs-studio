@@ -1,12 +1,12 @@
 import { FormEvent, useState } from "react";
-import { Network } from "lucide-react";
+import { AppLogo } from "./AppLogo";
 import { t } from "../lib/i18n";
 import { useAuthStore } from "../store/authStore";
 
 export function LoginPage() {
   const login = useAuthStore((state) => state.login);
-  const [email, setEmail] = useState("admin@local.test");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const submit = async (event: FormEvent) => {
@@ -24,9 +24,7 @@ export function LoginPage() {
       <form className="w-full max-w-md rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-soft" onSubmit={submit}>
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-md bg-white text-slate-950">
-              <Network className="h-5 w-5" />
-            </div>
+            <AppLogo className="h-11 w-11" />
             <div>
               <h1 className="text-lg font-black">Network Docs Studio</h1>
               <p className="text-sm text-slate-400">{t("login")}</p>

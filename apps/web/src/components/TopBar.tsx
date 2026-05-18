@@ -15,6 +15,7 @@ import {
   Undo2
 } from "lucide-react";
 import { useReactFlow } from "@xyflow/react";
+import { AppLogo } from "./AppLogo";
 import { copyText, exportDiagram, getPublicDiagramUrl } from "../lib/exportDiagram";
 import { t } from "../lib/i18n";
 import { useAuthStore } from "../store/authStore";
@@ -74,9 +75,7 @@ export function TopBar({ onManageUsers }: { onManageUsers: () => void }) {
     <header className="flex h-16 shrink-0 items-center gap-3 border-b border-slate-200 bg-white px-4 dark:border-slate-800 dark:bg-slate-950">
       <div className="flex min-w-[210px] items-center gap-2">
         <div className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-sm font-black text-white dark:bg-white dark:text-slate-950">
-            ND
-          </div>
+          <AppLogo />
           <div className="min-w-0">
             <h1 className="truncate text-sm font-bold text-slate-950 dark:text-white">{diagram.name}</h1>
             <p className="truncate text-xs text-slate-500 dark:text-slate-400">/connections/{diagram.slug}</p>
