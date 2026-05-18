@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Network Docs Studio application preview</title>
+  <desc id="desc">A modern network topology diagram editor with device panels, canvas nodes, and clear infrastructure connections.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.58" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#93c5fd" opacity="0.38"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="52" y="58" width="1096" height="514" rx="22" fill="#0b1220" filter="url(#shadow)"/>
+
+  <rect x="52" y="58" width="1096" height="62" rx="22" fill="#ffffff"/>
+  <path d="M52 100h1096v20H52z" fill="#ffffff"/>
+  <rect x="80" y="78" width="34" height="34" rx="8" fill="#0f172a"/>
+  <path d="M90 89h14M90 101h14M97 89v12" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="90" cy="89" r="4.2" fill="#22c55e"/>
+  <circle cx="104" cy="89" r="4.2" fill="#14b8a6"/>
+  <circle cx="90" cy="101" r="4.2" fill="#6366f1"/>
+  <circle cx="104" cy="101" r="4.2" fill="#f97316"/>
+  <circle cx="97" cy="95" r="5" fill="#ffffff"/>
+  <circle cx="97" cy="95" r="1.8" fill="#0f172a"/>
+  <text x="128" y="99" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Network Docs Studio</text>
+  <rect x="420" y="78" width="260" height="32" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="440" y="99" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600">Search nodes, IPs, locations</text>
+  <rect x="930" y="77" width="72" height="34" rx="8" fill="#0f172a"/>
+  <text x="952" y="99" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800">Save</text>
+  <rect x="1014" y="77" width="34" height="34" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="1058" y="77" width="34" height="34" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="1102" y="77" width="34" height="34" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+
+  <rect x="52" y="120" width="200" height="452" fill="#ffffff"/>
+  <text x="78" y="153" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1">DEVICES</text>
+  <rect x="182" y="135" width="34" height="24" rx="7" fill="#e2e8f0"/>
+  <text x="194" y="153" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">8</text>
+
+  <g font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#334155">
+    <rect x="78" y="176" width="64" height="58" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+    <rect x="154" y="176" width="64" height="58" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+    <rect x="78" y="248" width="64" height="58" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+    <rect x="154" y="248" width="64" height="58" rx="9" fill="#f8fafc" stroke="#cbd5e1"/>
+    <circle cx="110" cy="198" r="9" fill="#38bdf8"/>
+    <circle cx="186" cy="198" r="9" fill="#22c55e"/>
+    <circle cx="110" cy="270" r="9" fill="#f97316"/>
+    <circle cx="186" cy="270" r="9" fill="#6366f1"/>
+    <text x="91" y="222">Router</text>
+    <text x="169" y="222">Switch</text>
+    <text x="88" y="294">Firewall</text>
+    <text x="169" y="294">Server</text>
+  </g>
+
+  <text x="78" y="352" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="1">CONNECTION CLARITY</text>
+  <line x1="80" y1="382" x2="138" y2="382" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+  <text x="154" y="386" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600">Physical links</text>
+  <line x1="80" y1="416" x2="138" y2="416" stroke="#14b8a6" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round"/>
+  <text x="154" y="420" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600">VPN tunnels</text>
+  <line x1="80" y1="450" x2="138" y2="450" stroke="#6366f1" stroke-width="6" stroke-linecap="round"/>
+  <text x="154" y="454" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600">Merged path</text>
+
+  <rect x="252" y="120" width="690" height="452" fill="#101820"/>
+  <rect x="252" y="120" width="690" height="452" fill="url(#grid)"/>
+
+  <g stroke-linecap="round" fill="none">
+    <path d="M390 230 C470 186 532 186 612 230" stroke="#0ea5e9" stroke-width="4"/>
+    <path d="M612 230 C720 214 760 280 825 330" stroke="#22c55e" stroke-width="4"/>
+    <path d="M612 230 C650 316 614 398 548 438" stroke="#14b8a6" stroke-width="4" stroke-dasharray="10 8"/>
+    <path d="M612 230 C700 160 780 160 850 210" stroke="#6366f1" stroke-width="6" stroke-dasharray="12 9"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(310 184)">
+      <rect width="160" height="96" rx="12" fill="url(#panel)" stroke="#cbd5e1"/>
+      <rect width="160" height="6" rx="3" fill="#0ea5e9"/>
+      <circle cx="24" cy="30" r="8" fill="#22c55e"/>
+      <text x="42" y="35" fill="#0f172a" font-size="14" font-weight="800">Internet Edge</text>
+      <text x="18" y="62" fill="#64748b" font-size="12" font-weight="700">203.0.113.10</text>
+    </g>
+    <g transform="translate(532 184)">
+      <rect width="160" height="96" rx="12" fill="url(#panel)" stroke="#cbd5e1"/>
+      <rect width="160" height="6" rx="3" fill="#f97316"/>
+      <circle cx="24" cy="30" r="8" fill="#f59e0b"/>
+      <text x="42" y="35" fill="#0f172a" font-size="14" font-weight="800">Core Firewall</text>
+      <text x="18" y="62" fill="#64748b" font-size="12" font-weight="700">10.10.0.1</text>
+    </g>
+    <g transform="translate(745 287)">
+      <rect width="160" height="96" rx="12" fill="url(#panel)" stroke="#cbd5e1"/>
+      <rect width="160" height="6" rx="3" fill="#22c55e"/>
+      <circle cx="24" cy="30" r="8" fill="#22c55e"/>
+      <text x="42" y="35" fill="#0f172a" font-size="14" font-weight="800">Core Switch</text>
+      <text x="18" y="62" fill="#64748b" font-size="12" font-weight="700">10.10.0.2</text>
+    </g>
+    <g transform="translate(770 164)">
+      <rect width="160" height="96" rx="12" fill="url(#panel)" stroke="#cbd5e1"/>
+      <rect width="160" height="6" rx="3" fill="#6366f1"/>
+      <circle cx="24" cy="30" r="8" fill="#22c55e"/>
+      <text x="42" y="35" fill="#0f172a" font-size="14" font-weight="800">Cloud VPC</text>
+      <text x="18" y="62" fill="#64748b" font-size="12" font-weight="700">10.20.1.20</text>
+    </g>
+    <g transform="translate(468 390)">
+      <rect width="160" height="96" rx="12" fill="url(#panel)" stroke="#cbd5e1"/>
+      <rect width="160" height="6" rx="3" fill="#14b8a6"/>
+      <circle cx="24" cy="30" r="8" fill="#22c55e"/>
+      <text x="42" y="35" fill="#0f172a" font-size="14" font-weight="800">Branch VPN</text>
+      <text x="18" y="62" fill="#64748b" font-size="12" font-weight="700">10.30.0.1</text>
+    </g>
+  </g>
+
+  <rect x="942" y="120" width="206" height="452" fill="#ffffff"/>
+  <text x="970" y="153" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">Device Details</text>
+  <text x="970" y="196" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="1">NAME</text>
+  <rect x="970" y="208" width="150" height="34" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="984" y="230" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Core Firewall</text>
+  <text x="970" y="270" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="1">STATUS</text>
+  <rect x="970" y="282" width="150" height="34" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="984" y="304" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Warning</text>
+  <text x="970" y="344" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="1">CONNECTIONS</text>
+  <rect x="970" y="364" width="150" height="78" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+  <line x1="988" y1="388" x2="1102" y2="388" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+  <line x1="988" y1="414" x2="1102" y2="414" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
+
+  <text x="80" y="603" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="900">Professional network topology documentation for infrastructure teams</text>
+</svg>

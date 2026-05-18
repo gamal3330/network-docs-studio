@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/readme-hero.svg" alt="Network Docs Studio application preview" width="100%">
+</p>
+
 # Network Docs Studio
 
 Network Docs Studio is a modern web application for creating, editing, and sharing interactive network topology diagrams. It helps infrastructure and network teams document routers, switches, firewalls, servers, cloud services, VPN links, and physical or logical connections in a clean visual workspace.
