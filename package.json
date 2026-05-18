@@ -1,0 +1,20 @@
+{
+  "name": "network-docs-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Interactive network topology documentation platform.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @nds/web",
+    "dev:api": "npm run dev --workspace @nds/api",
+    "build": "npm run build --workspace @nds/shared && npm run build --workspace @nds/api && npm run build --workspace @nds/web",
+    "typecheck": "npm run build --workspace @nds/shared && npm run typecheck --workspace @nds/api && npm run typecheck --workspace @nds/web",
+    "lint": "npm run lint --workspaces"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

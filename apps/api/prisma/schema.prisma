@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Team {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  users     User[]
+  diagrams  Diagram[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model User {
+  id        String   @id @default(cuid())
+  teamId    String
+  email     String   @unique
+  name      String
+  passwordHash String
+  role      String   @default("editor")
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Diagram {
+  id          String       @id @default(cuid())
+  teamId      String
+  name        String
+  slug        String
+  description String?
+  visibility  String       @default("private")
+  version     Int          @default(1)
+  team        Team         @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  devices     Device[]
+  connections Connection[]
+  shares      ShareLink[]
+  exports     ExportJob[]
+  auditEvents AuditEvent[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([teamId, slug])
+  @@index([slug])
+}
+
+model Device {
+  id        String   @id @default(cuid())
+  diagramId String
+  name      String
+  ipAddress String?
+  type      String
+  icon      String?
+  location  String?
+  notes     String?
+  status    String   @default("unknown")
+  color     String
+  x         Float
+  y         Float
+  diagram   Diagram  @relation(fields: [diagramId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([diagramId])
+}
+
+model Connection {
+  id        String   @id @default(cuid())
+  diagramId String
+  sourceId  String
+  targetId  String
+  label     String?
+  kind      String
+  media     String
+  color     String
+  dashed    Boolean  @default(false)
+  diagram   Diagram  @relation(fields: [diagramId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([diagramId])
+  @@index([sourceId])
+  @@index([targetId])
+}
+
+model ShareLink {
+  id        String    @id @default(cuid())
+  diagramId String
+  token     String    @unique
+  mode      String    @default("read-only")
+  expiresAt DateTime?
+  diagram   Diagram   @relation(fields: [diagramId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+}
+
+model ExportJob {
+  id        String    @id @default(cuid())
+  diagramId String
+  format    String
+  status    String    @default("queued")
+  url       String?
+  diagram   Diagram   @relation(fields: [diagramId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model AuditEvent {
+  id        String   @id @default(cuid())
+  diagramId String
+  actorId   String?
+  action    String
+  metadata  String?
+  diagram   Diagram  @relation(fields: [diagramId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: file:/data/dev.db
+      JWT_SECRET: change-me-in-production
+      PORT: 4000
+      CORS_ORIGIN: http://localhost:5173
+    volumes:
+      - sqlite-data:/data
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  sqlite-data:

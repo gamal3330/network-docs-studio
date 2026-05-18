@@ -1,0 +1,42 @@
+import { prisma } from "../../db/prisma.js";
+import { hashPassword } from "./password.js";
+
+export async function ensureAdminUser() {
+  await prisma.team.upsert({
+    where: { slug: "core" },
+    update: {},
+    create: {
+      id: "team-core",
+      name: "Core Network Team",
+      slug: "core"
+    }
+  });
+
+  const existingAdmin = await prisma.user.findFirst({
+    where: { teamId: "team-core", role: "admin" }
+  });
+
+  if (existingAdmin?.passwordHash) return;
+
+  const passwordHash = await hashPassword("admin123");
+
+  if (existingAdmin) {
+    await prisma.user.update({
+      where: { id: existingAdmin.id },
+      data: { passwordHash }
+    });
+    return;
+  }
+
+  await prisma.user.upsert({
+    where: { email: "admin@local.test" },
+    update: { passwordHash, role: "admin" },
+    create: {
+      teamId: "team-core",
+      name: "Admin",
+      email: "admin@local.test",
+      passwordHash,
+      role: "admin"
+    }
+  });
+}

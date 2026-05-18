@@ -1,0 +1,105 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS "Team" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "name" TEXT NOT NULL,
+  "slug" TEXT NOT NULL UNIQUE,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS "User" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "teamId" TEXT NOT NULL,
+  "email" TEXT NOT NULL UNIQUE,
+  "name" TEXT NOT NULL,
+  "passwordHash" TEXT NOT NULL DEFAULT '',
+  "role" TEXT NOT NULL DEFAULT 'editor',
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "User_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "Diagram" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "teamId" TEXT NOT NULL,
+  "name" TEXT NOT NULL,
+  "slug" TEXT NOT NULL,
+  "description" TEXT,
+  "visibility" TEXT NOT NULL DEFAULT 'private',
+  "version" INTEGER NOT NULL DEFAULT 1,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Diagram_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "Device" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "diagramId" TEXT NOT NULL,
+  "name" TEXT NOT NULL,
+  "ipAddress" TEXT,
+  "type" TEXT NOT NULL,
+  "icon" TEXT,
+  "location" TEXT,
+  "notes" TEXT,
+  "status" TEXT NOT NULL DEFAULT 'unknown',
+  "color" TEXT NOT NULL,
+  "x" REAL NOT NULL,
+  "y" REAL NOT NULL,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Device_diagramId_fkey" FOREIGN KEY ("diagramId") REFERENCES "Diagram" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "Connection" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "diagramId" TEXT NOT NULL,
+  "sourceId" TEXT NOT NULL,
+  "targetId" TEXT NOT NULL,
+  "label" TEXT,
+  "kind" TEXT NOT NULL,
+  "media" TEXT NOT NULL,
+  "color" TEXT NOT NULL,
+  "dashed" BOOLEAN NOT NULL DEFAULT false,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Connection_diagramId_fkey" FOREIGN KEY ("diagramId") REFERENCES "Diagram" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "ShareLink" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "diagramId" TEXT NOT NULL,
+  "token" TEXT NOT NULL UNIQUE,
+  "mode" TEXT NOT NULL DEFAULT 'read-only',
+  "expiresAt" DATETIME,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "ShareLink_diagramId_fkey" FOREIGN KEY ("diagramId") REFERENCES "Diagram" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "ExportJob" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "diagramId" TEXT NOT NULL,
+  "format" TEXT NOT NULL,
+  "status" TEXT NOT NULL DEFAULT 'queued',
+  "url" TEXT,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "ExportJob_diagramId_fkey" FOREIGN KEY ("diagramId") REFERENCES "Diagram" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "AuditEvent" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "diagramId" TEXT NOT NULL,
+  "actorId" TEXT,
+  "action" TEXT NOT NULL,
+  "metadata" TEXT,
+  "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "AuditEvent_diagramId_fkey" FOREIGN KEY ("diagramId") REFERENCES "Diagram" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS "Diagram_teamId_slug_key" ON "Diagram" ("teamId", "slug");
+CREATE INDEX IF NOT EXISTS "Diagram_slug_idx" ON "Diagram" ("slug");
+CREATE INDEX IF NOT EXISTS "Device_diagramId_idx" ON "Device" ("diagramId");
+CREATE INDEX IF NOT EXISTS "Connection_diagramId_idx" ON "Connection" ("diagramId");
+CREATE INDEX IF NOT EXISTS "Connection_sourceId_idx" ON "Connection" ("sourceId");
+CREATE INDEX IF NOT EXISTS "Connection_targetId_idx" ON "Connection" ("targetId");

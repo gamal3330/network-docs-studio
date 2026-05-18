@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family:
+    Inter, "Segoe UI", Tahoma, Arial, ui-sans-serif, system-ui, sans-serif;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f7f8fb;
+}
+
+.border-inline-start {
+  border-inline-start-width: 1px;
+}
+
+.border-inline-end {
+  border-inline-end-width: 1px;
+}
+
+.react-flow,
+.react-flow__container,
+.react-flow__renderer,
+.react-flow__zoompane {
+  direction: ltr;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@layer components {
+  .icon-btn {
+    @apply grid h-10 w-10 place-items-center rounded-md border border-slate-200 bg-white text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800;
+  }
+
+  .icon-btn svg {
+    @apply h-4 w-4;
+  }
+
+  .compact-icon-btn {
+    @apply grid h-9 w-9 place-items-center rounded-md border border-transparent text-slate-600 transition hover:border-sky-200 hover:bg-white hover:text-sky-700 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-800 dark:hover:text-white;
+  }
+
+  .compact-icon-btn svg {
+    @apply h-4 w-4;
+  }
+
+  .toolbar-btn {
+    @apply flex h-10 items-center gap-2 rounded-md bg-slate-950 px-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200;
+  }
+
+  .primary-toolbar-btn {
+    @apply flex h-10 items-center gap-2 rounded-md bg-slate-950 px-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200;
+  }
+
+  .field {
+    @apply h-10 rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none focus:border-sky-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white;
+  }
+}
+
+.nds-flow .react-flow__edge-path {
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.16));
+}
+
+.nds-flow .react-flow__edge.animated path {
+  stroke-dasharray: 10 8;
+  animation-duration: 0.9s;
+}
+
+.nds-flow .react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 5;
+}
+
+.nds-flow .react-flow__handle {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.nds-flow .react-flow__node:hover .react-flow__handle,
+.nds-flow .react-flow__node.selected .react-flow__handle {
+  opacity: 1;
+}
+
+.react-flow__minimap {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-flow__controls {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
