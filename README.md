@@ -123,7 +123,7 @@ http://localhost:5173
 The API seeds an admin user automatically:
 
 ```text
-Email: admin@qtbbank.com
+Email: admin@local.com
 Password: admin@123
 ```
 
@@ -235,7 +235,7 @@ Test the web and API through the public web container:
 curl http://YOUR_SERVER_IP/health
 curl http://YOUR_SERVER_IP/api/v1/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@qtbbank.com","password":"admin@123"}'
+  -d '{"email":"admin@local.com","password":"admin@123"}'
 ```
 
 Reset a user password inside the production API container:

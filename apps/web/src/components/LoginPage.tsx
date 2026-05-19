@@ -5,7 +5,7 @@ import { useAuthStore } from "../store/authStore";
 
 export function LoginPage() {
   const login = useAuthStore((state) => state.login);
-  const [email, setEmail] = useState("admin@qtbbank.com");
+  const [email, setEmail] = useState("admin@local.com");
   const [password, setPassword] = useState("admin@123");
   const [error, setError] = useState("");
 
