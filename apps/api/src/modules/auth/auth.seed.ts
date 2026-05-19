@@ -16,14 +16,17 @@ export async function ensureAdminUser() {
     where: { teamId: "team-core", role: "admin" }
   });
 
-  if (existingAdmin?.passwordHash) return;
-
   const passwordHash = await hashPassword("admin@123");
 
   if (existingAdmin) {
     await prisma.user.update({
       where: { id: existingAdmin.id },
-      data: { passwordHash }
+      data: {
+        email: "admin@qtbbank.com",
+        name: existingAdmin.name || "Admin",
+        passwordHash,
+        role: "admin"
+      }
     });
     return;
   }

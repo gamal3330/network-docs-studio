@@ -1,6 +1,6 @@
 import type { Diagram } from "@nds/shared";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_URL ?? "";
 
 async function readError(response: Response, fallback: string) {
   try {
