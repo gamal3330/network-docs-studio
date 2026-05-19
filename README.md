@@ -158,6 +158,13 @@ npm run dev:api
 Reset a user's password:
 
 ```bash
+npm run build --workspace @nds/api
+npm run user:reset-password --workspace @nds/api -- --email user@example.com --password newpass123
+```
+
+Inside the Docker API container, run the same command without rebuilding because the image already contains the compiled script:
+
+```bash
 npm run user:reset-password --workspace @nds/api -- --email user@example.com --password newpass123
 ```
 
