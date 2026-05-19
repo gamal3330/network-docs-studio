@@ -11,7 +11,8 @@
     "lint": "tsc -p tsconfig.json --noEmit",
     "db:init": "sqlite3 prisma/dev.db < prisma/sqlite-init.sql",
     "prisma:generate": "prisma generate --schema prisma/schema.prisma",
-    "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma"
+    "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma",
+    "user:reset-password": "tsx src/scripts/reset-password.ts"
   },
   "dependencies": {
     "@nds/shared": "*",

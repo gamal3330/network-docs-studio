@@ -155,6 +155,12 @@ Run only the API:
 npm run dev:api
 ```
 
+Reset a user's password:
+
+```bash
+npm run user:reset-password --workspace @nds/api -- --email user@example.com --password newpass123
+```
+
 ## Docker
 
 Build and run the app with Docker Compose:
