@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+dist
+**/dist
+.git
+.gitignore
+.DS_Store
+*.log
+.env
+.env.*
+apps/api/prisma/dev.db
+apps/api/prisma/dev.db-*
+**/*.tsbuildinfo
+coverage
