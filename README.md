@@ -181,6 +181,71 @@ Services:
 - Web: `http://localhost:5173`
 - API: `http://localhost:4000`
 
+## Production Docker Deployment
+
+Use the production Compose file on a server so the browser never calls `localhost`. In this setup, only the web container is public. The web container proxies `/api` to the API container through the private Docker network.
+
+Create the production environment file:
+
+```bash
+cp .env.production.example .env
+```
+
+Edit `.env` and set your real server address or domain:
+
+```text
+PUBLIC_ORIGIN=http://YOUR_SERVER_IP
+JWT_SECRET=replace-with-a-long-random-secret
+WEB_PORT=80
+```
+
+Generate a strong JWT secret:
+
+```bash
+openssl rand -base64 48
+```
+
+Start the production containers:
+
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+```
+
+Open the application:
+
+```text
+http://YOUR_SERVER_IP
+```
+
+If you use a domain with HTTPS, set:
+
+```text
+PUBLIC_ORIGIN=https://your-domain.com
+```
+
+Check container status:
+
+```bash
+docker compose -f docker-compose.prod.yml ps
+```
+
+Test the web and API through the public web container:
+
+```bash
+curl http://YOUR_SERVER_IP/health
+curl http://YOUR_SERVER_IP/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@qtbbank.com","password":"admin@123"}'
+```
+
+Reset a user password inside the production API container:
+
+```bash
+docker compose -f docker-compose.prod.yml exec api \
+  npm run user:reset-password --workspace @nds/api -- \
+  --email user@example.com --password newpass123
+```
+
 ## Environment
 
 API environment variables are defined in `apps/api/.env.example`:
