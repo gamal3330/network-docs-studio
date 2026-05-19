@@ -18,7 +18,7 @@ export async function ensureAdminUser() {
 
   if (existingAdmin?.passwordHash) return;
 
-  const passwordHash = await hashPassword("admin123");
+  const passwordHash = await hashPassword("admin@123");
 
   if (existingAdmin) {
     await prisma.user.update({
@@ -29,12 +29,12 @@ export async function ensureAdminUser() {
   }
 
   await prisma.user.upsert({
-    where: { email: "admin@local.test" },
+    where: { email: "admin@qtbbank.com" },
     update: { passwordHash, role: "admin" },
     create: {
       teamId: "team-core",
       name: "Admin",
-      email: "admin@local.test",
+      email: "admin@qtbbank.com",
       passwordHash,
       role: "admin"
     }

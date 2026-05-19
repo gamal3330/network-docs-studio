@@ -123,8 +123,8 @@ http://localhost:5173
 The API seeds an admin user automatically:
 
 ```text
-Email: admin@local.test
-Password: admin123
+Email: admin@qtbbank.com
+Password: admin@123
 ```
 
 Use this account to create additional users from the user management screen.

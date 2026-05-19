@@ -5,8 +5,8 @@ import { useAuthStore } from "../store/authStore";
 
 export function LoginPage() {
   const login = useAuthStore((state) => state.login);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@qtbbank.com");
+  const [password, setPassword] = useState("admin@123");
   const [error, setError] = useState("");
 
   const submit = async (event: FormEvent) => {
